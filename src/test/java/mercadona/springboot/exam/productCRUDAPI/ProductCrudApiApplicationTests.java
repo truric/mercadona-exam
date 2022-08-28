@@ -148,4 +148,47 @@ class ProductCrudApiApplicationTests {
 		Assertions.assertThat(optionalProduct).isNotPresent();
 	}
 
+//	@Test
+//	public void testValidationConstraintHandler() {
+//		String generatedName = RandomStringUtils.randomAlphabetic(51);
+//		String generatedWeightFormat = RandomStringUtils.randomAlphabetic(6);
+//		String generatedThumbnail = RandomStringUtils.randomAlphabetic(301);
+//		Product product = new Product();
+//		product.setName(generatedName);
+//		product.setPrice(1000);
+//		product.setQuantity(100000);
+//		product.setWeight(1000);
+//		product.setWeightFormat(generatedWeightFormat);
+//		product.setThumbnail(generatedThumbnail);
+//
+//		Product savedProduct = productRepository.save(product);
+
+//		Exception exception = assertThrows(ConstraintViolationException.class, () -> {
+//			Product savedProduct = productRepository.save(product);
+//		});
+
+//		String expectedMessage = "Validation failed for classes";
+//		String actualMessage = exception.getMessage();
+//
+//		assertTrue(actualMessage.contains(expectedMessage));
+
+//		Assertions.assertThat(savedProduct.getId().intValue()).isNull();
+
+//		AtomicReference<Product> savedProduct = null;
+//		Exception exception = assertThrows(NullPointerException.class, () ->
+//				savedProduct.set(productRepository.save(product)));
+//		assertEquals(null, exception.getMessage());
+//		assertThrows(TransactionSystemException.class, () ->
+//				savedProduct.set(productRepository.save(product)));
+//		assertEquals("Could not commit JPA transaction", exception.getMessage());
+
+
+//		Exception exception = assertThrows(NullPointerException.class, () ->
+//		savedProduct.set(productRepository.save(product)));
+//		assertEquals(null, exception.getMessage());
+//
+//		assertEquals(savedProduct.getClass(), Product.class);
+
+//	}
+
 }
