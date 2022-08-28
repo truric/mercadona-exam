@@ -3,23 +3,26 @@ package mercadona.springboot.exam.productCRUDAPI;
 import mercadona.springboot.exam.productCRUDAPI.model.Product;
 import mercadona.springboot.exam.productCRUDAPI.repository.ProductRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ProductCrudApiApplicationTests {
 
 	@Autowired private ProductRepository productRepository;
 
 	@Test
+	@Order(1)
 	public void testAddNewProducts() {
 		Product product1 = new Product();
 		product1.setName("Pollo");
@@ -102,12 +105,14 @@ class ProductCrudApiApplicationTests {
 		product10.setThumbnail("https://prod-mercadona.imgix.net/images/ceaa044fec4cfe298c9c4ace12980775.jpg?fit=crop&h=300&w=300");
 
 		List<Product> savedProducts = productRepository.saveAll(
-				List.of(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10));
+				Arrays.asList(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10));
 
 		Assertions.assertThat(savedProducts).isNotNull();
+
 	}
 
 	@Test
+	@Order(2)
 	public void testListAllProducts() {
 		Iterable<Product> products = productRepository.findAll();
 		Assertions.assertThat(products).hasSizeGreaterThan(0);
@@ -118,8 +123,9 @@ class ProductCrudApiApplicationTests {
 	}
 
 	@Test
+	@Order(3)
 	public void testUpdateProduct() {
-		Long productId = Long.valueOf(9);
+		Long productId = Long.valueOf(2);
 		Optional<Product> optionalProduct = productRepository.findById(productId);
 		Product product = optionalProduct.get();
 		product.setName("nuevo nombre de producto");
@@ -130,8 +136,9 @@ class ProductCrudApiApplicationTests {
 	}
 
 	@Test
+	@Order(4)
 	public void testGetProduct() {
-		Long productId = Long.valueOf(10);
+		Long productId = Long.valueOf(2);
 		Optional<Product> optionalProduct = productRepository.findById(productId);
 		Product product = optionalProduct.get();
 
@@ -140,8 +147,10 @@ class ProductCrudApiApplicationTests {
 	}
 
 	@Test
+	@Order(5)
 	public void testDelete() {
-		Long productId = Long.valueOf(10);
+//		Long productId = Long.valueOf(10);
+		Long productId = Long.valueOf(2);
 		productRepository.deleteById(productId);
 
 		Optional<Product> optionalProduct = productRepository.findById(productId);
@@ -162,18 +171,18 @@ class ProductCrudApiApplicationTests {
 //		product.setThumbnail(generatedThumbnail);
 //
 //		Product savedProduct = productRepository.save(product);
-
+//
 //		Exception exception = assertThrows(ConstraintViolationException.class, () -> {
 //			Product savedProduct = productRepository.save(product);
 //		});
-
+//
 //		String expectedMessage = "Validation failed for classes";
 //		String actualMessage = exception.getMessage();
 //
 //		assertTrue(actualMessage.contains(expectedMessage));
-
+//
 //		Assertions.assertThat(savedProduct.getId().intValue()).isNull();
-
+//
 //		AtomicReference<Product> savedProduct = null;
 //		Exception exception = assertThrows(NullPointerException.class, () ->
 //				savedProduct.set(productRepository.save(product)));
@@ -181,14 +190,14 @@ class ProductCrudApiApplicationTests {
 //		assertThrows(TransactionSystemException.class, () ->
 //				savedProduct.set(productRepository.save(product)));
 //		assertEquals("Could not commit JPA transaction", exception.getMessage());
-
-
+//
+//
 //		Exception exception = assertThrows(NullPointerException.class, () ->
 //		savedProduct.set(productRepository.save(product)));
 //		assertEquals(null, exception.getMessage());
 //
 //		assertEquals(savedProduct.getClass(), Product.class);
-
+//
 //	}
 
 }
