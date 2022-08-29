@@ -74,6 +74,7 @@ http://localhost:8080/api/v1/products/2
 * In order to make the response requests user-friendly, instead of using a conditional approach or surrounding every request with try catch, I've used Java Beans Validator which adds rules to properties and returns error messages to the User.
 * To aid in this regard, I've created ValidationConstraintHandler, which intercepts exceptions, so we can customize error messages. It also formats the response request on errors with timestamp, status code and a personalized message from the Controller
 * On the Controller, the personalized error messages are sent with the help of ResourceNotFoundException, and the successful messages are sent with ResponseEntity body.
+* I've used a BDD approach, whereas everything was tested and every test must pass first in order to move on to the next step
 
 ## Docker
 

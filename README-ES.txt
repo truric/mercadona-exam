@@ -21,7 +21,7 @@ https://github.com/truric/mercadona-exam/archive/refs/heads/main.zip
 ## Ejecute la aplicación sin Docker:
 * Crear una base de datos PostgreSQL con nombre: mercadona
 * Configure la configuración de su navegador de base de datos para que se vea así, donde la contraseña es "wm", como se ve en application.properties:
-Imagen
+image: "img.png"
 * Ejecute todas las pruebas a la vez para llenar la base de datos con registros de tablas y productos
 
 * Ahora puede ejecutar la aplicación
@@ -73,6 +73,7 @@ DELETE http://localhost:8080/api/v1/products/2
 * Para hacer que las solicitudes de respuesta sean fáciles de usar, en lugar de usar un enfoque condicional o rodear cada solicitud con una captura de intento, he usado Java Beans Validator, que agrega reglas a las propiedades y devuelve mensajes de error al usuario.
 * Para ayudar en este sentido, he creado ValidationConstraintHandler, que intercepta excepciones, para que podamos personalizar los mensajes de error. También formatea la solicitud de respuesta sobre errores con sello de tiempo, código de estado y un mensaje personalizado del Controlador
 * En el controlador, los mensajes de error personalizados se envían con la ayuda de ResourceNotFoundException y los mensajes exitosos se envían con el cuerpo de ResponseEntity.
+* Utilicé un enfoque BDD, mientras que todo se probó y cada prueba debe pasar primero para pasar al siguiente paso.
 
 ## Docker
 
